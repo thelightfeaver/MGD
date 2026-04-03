@@ -27,17 +27,10 @@ clean:
 	find . -type d -name "__pycache__" -delete
 
 
-## Lint using ruff (use `make format` to do formatting)
-.PHONY: lint
-lint:
-	ruff format --check
-	ruff check
-
 ## Format source code with ruff
 .PHONY: format
 format:
-	ruff check --fix
-	ruff format
+	ruff format . | isort .
 
 
 
@@ -50,21 +43,29 @@ test:
 ## Set up Python interpreter environment
 .PHONY: create_environment
 create_environment:
-	@bash -c "if [ ! -z `which virtualenvwrapper.sh` ]; then source `which virtualenvwrapper.sh`; mkvirtualenv $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER); else mkvirtualenv.bat $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER); fi"
-	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
-	
-
+	python -m venv .venv
 
 
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
 
+.PHONY: all
 
-## Make dataset
-.PHONY: data
-data: requirements
-	$(PYTHON_INTERPRETER) src/dataset.py
+all:
+	dataset feature train predict
+
+dataset:
+	$(PYTHON_INTERPRETER) -m src.dataset
+
+feature:
+	$(PYTHON_INTERPRETER) -m src.features
+
+train:
+	$(PYTHON_INTERPRETER) -m src.modeling.train
+
+predict:
+	$(PYTHON_INTERPRETER) -m src.modeling.predict
 
 
 #################################################################################

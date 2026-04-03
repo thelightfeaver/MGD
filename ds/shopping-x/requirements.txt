@@ -5,4 +5,11 @@ python-dotenv
 ruff
 tqdm
 typer
+scikit-learn
+matplotlib
+seaborn
+numpy
+pandas
+streamlit
+mlflow
 -e .
