@@ -74,15 +74,88 @@
 - Ver y filtrar ventas (por fecha/producto)
 - Dashboard de analítica
 
+---
+
+## Flujo de Usuario
+
+```mermaid
+flowchart TD
+    A([Inicio]) --> B[Ingresar a la app]
+    B --> C{¿Tiene cuenta?}
+    C -- No --> D[Registrarse\n/api/register]
+    C -- Sí --> E[Iniciar sesión\n/api/login]
+    D --> E
+    E --> F[Ver catálogo de ropa\nGET /api/ropa]
+    F --> G{¿Qué desea hacer?}
+    G -- Filtrar --> H[Filtrar por categoría /\nmarca / talla]
+    H --> F
+    G -- Agregar al carrito --> I[Agregar item al carrito\nPOST /api/carrito]
+    I --> J[Ver carrito\nGET /api/carrito]
+    J --> K{¿Acción en carrito?}
+    K -- Eliminar item --> L[Eliminar item\nDELETE /api/carrito/id]
+    L --> J
+    K -- Confirmar compra --> M[Realizar compra\nPOST /api/ventas]
+    M --> N[Ver historial de ventas\nGET /api/ventas]
+    N --> O([Fin])
+```
+
+---
+
+## Flujo de Administrador
+
+```mermaid
+flowchart TD
+    A([Inicio]) --> B[Iniciar sesión como admin\nPOST /api/login]
+    B --> C{¿Qué desea gestionar?}
+
+    C -- Ropa --> D{Acción sobre ropa}
+    D -- Crear --> D1[POST /api/ropa]
+    D -- Editar --> D2[PUT /api/ropa/id]
+    D -- Eliminar --> D3[DELETE /api/ropa/id]
+    D -- Ver lista --> D4[GET /api/ropa]
+
+    C -- Categorías --> E{Acción sobre categorías}
+    E -- Crear --> E1[POST /api/categorias]
+    E -- Editar --> E2[PUT /api/categorias/id]
+    E -- Eliminar --> E3[DELETE /api/categorias/id]
+    E -- Ver lista --> E4[GET /api/categorias]
+
+    C -- Tallas --> F{Acción sobre tallas}
+    F -- Crear --> F1[POST /api/sizes]
+    F -- Editar --> F2[PUT /api/sizes/id]
+    F -- Eliminar --> F3[DELETE /api/sizes/id]
+    F -- Ver lista --> F4[GET /api/sizes]
+
+    C -- Marcas --> G{Acción sobre marcas}
+    G -- Crear --> G1[POST /api/marcas]
+    G -- Editar --> G2[PUT /api/marcas/id]
+    G -- Eliminar --> G3[DELETE /api/marcas/id]
+    G -- Ver lista --> G4[GET /api/marcas]
+
+    C -- Ventas --> H[Ver todas las ventas\nGET /api/ventas/admin]
+    H --> H1{¿Filtrar ventas?}
+    H1 -- Por fecha --> H2[Filtrar por fecha_inicio / fecha_fin]
+    H1 -- Por producto --> H3[Filtrar por id_ropa]
+    H2 & H3 --> H
+
+    C -- Dashboard --> I[Ver analítica\nDashboard DS / Streamlit]
+
+    D1 & D2 & D3 & D4 --> Z([Fin])
+    E1 & E2 & E3 & E4 --> Z
+    F1 & F2 & F3 & F4 --> Z
+    G1 & G2 & G3 & G4 --> Z
+    I --> Z
+```
+
 ## Esquema de Base de Datos
 
 | Tabla | Campos |
 |-------|--------|
 | **usuario** | id, nombre, correo, clave, es_admin (default: false) |
-| **marca** | id, nombre, fecha_creado, eliminido|
-| **categoria** | id, nombre,fecha_creado, eliminado |
-| **size** | id, nombre, fecha_creado, eliminado |
-| **ropa** | id, id_categoria, id_marca, id_size, ruta_foto, precio_venta, precio_compra, descripcion, fecha_creado, fecha_actualizacion, eliminada |
+| **marca** | id, nombre, fecha_creado, eliminido(default false)|
+| **categoria** | id, nombre,fecha_creado, eliminado(default false) |
+| **size** | id, nombre, fecha_creado, eliminado(default false) |
+| **ropa** | id, id_categoria, id_marca, id_size, ruta_foto, precio_venta, precio_compra, cantidad, descripcion, fecha_creado, fecha_actualizacion, eliminada (default false) |
 | **venta** | id, id_usuario, total, fecha_creado |
 | **detalle_venta** | id, id_venta, id_ropa, precio, descuento, cantidad, total |
 | **carrito** | id, id_usuario, id_ropa, cantidad, fecha_creacion |
@@ -133,3 +206,14 @@
 - Productos más vendidos
 - Ingresos totales por período
 - Análisis de tendencias de compra
+
+## Vistas
+- **Home:** Catálogo de ropa con filtros
+- **Producto:** Detalles de cada prenda
+- **Login/Register:** Formulario de autenticación
+- **Compra:** Proceso de compra de productos
+- **Carrito:** Detalles del carrito
+- **Admin:** Gestión de productos, categorías, tallas, marcas y ventas
+- **Analytics:** Visualización de métricas y tendencias de ventas
+
+
