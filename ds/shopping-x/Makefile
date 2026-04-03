@@ -51,21 +51,22 @@ env:
 #################################################################################
 
 .PHONY: all
-
-all:
-	dataset feature train predict
+all: dataset features train predict
 
 dataset:
-	$(PYTHON_INTERPRETER) -m src.dataset
+	$(PYTHON_INTERPRETER) src/dataset.py
 
-feature:
-	$(PYTHON_INTERPRETER) -m src.features
+features:
+	$(PYTHON_INTERPRETER) src/features.py
+
+plots:
+	$(PYTHON_INTERPRETER) src/plots.py
 
 train:
-	$(PYTHON_INTERPRETER) -m src.modeling.train
+	$(PYTHON_INTERPRETER) src/modeling/train.py
 
 predict:
-	$(PYTHON_INTERPRETER) -m src.modeling.predict
+	$(PYTHON_INTERPRETER) src/modeling/predict.py
 
 
 #################################################################################
