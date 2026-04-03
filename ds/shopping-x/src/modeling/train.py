@@ -1,12 +1,11 @@
 from pathlib import Path
 
-from loguru import logger
 import mlflow
-from tqdm import tqdm
 import typer
+from loguru import logger
+from tqdm import tqdm
 
-from src.config import MODELS_DIR, PROCESSED_DATA_DIR
-from src.config import MLFLOW_URI, MLFLOW_EXPERIMENT_NAME
+from src.config import MLFLOW_EXPERIMENT_NAME, MLFLOW_URI, MODELS_DIR, PROCESSED_DATA_DIR
 from src.utils import save_run_id
 
 app = typer.Typer()
@@ -21,7 +20,6 @@ def main(
     mlflow_experiment_name: str = MLFLOW_EXPERIMENT_NAME,
 ):
 
-    
     mlflow.set_tracking_uri(mlflow_uri)
     mlflow.set_experiment(mlflow_experiment_name)
     mlflow.autolog(silent=True)  # Automatically log parameters, metrics, and artifacts

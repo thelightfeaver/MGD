@@ -2,6 +2,7 @@ import os
 
 RUN_FILE = "run_id.txt"
 
+
 def load_run_id() -> str:
     """
     Load the MLflow run ID from a file. If the file does not exist, return None.

@@ -1,12 +1,11 @@
 from pathlib import Path
 
+import mlflow
+import typer
 from loguru import logger
 from tqdm import tqdm
-import typer
-import mlflow
 
-from src.config import MODELS_DIR, PROCESSED_DATA_DIR
-from src.config import MLFLOW_URI, MLFLOW_EXPERIMENT_NAME
+from src.config import MLFLOW_EXPERIMENT_NAME, MLFLOW_URI, MODELS_DIR, PROCESSED_DATA_DIR
 from src.utils import load_run_id
 
 app = typer.Typer()
@@ -26,6 +25,7 @@ def main(
     mlflow.set_experiment(mlflow_experiment_name)
     with mlflow.start_run(run_id=id) as run:
         pass
+
 
 if __name__ == "__main__":
     app()
