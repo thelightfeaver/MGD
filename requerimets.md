@@ -225,6 +225,3 @@ flowchart TD
 ## Modelos de Machine Learning
 - **Predicción de ventas:** Predecir ventas futuras basadas en datos históricos
 - **Recomendación de productos:** Sugerir productos a los usuarios basados en su historial de compras y navegación
-
-
-
