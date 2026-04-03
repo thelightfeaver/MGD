@@ -201,6 +201,12 @@ flowchart TD
 - `PUT /api/marcas/{id}` - Actualizar marca (admin)
 - `DELETE /api/marcas/{id}` - Eliminar marca (admin)
 
+### Analítica
+- `GET /api/analytics/ventas` - Obtener métricas de ventas (admin)
+- `GET /api/analytics/tendencias` - Obtener tendencias de compra (admin)
+- `GET /api/analytics/productos-mas-vendidos` - Obtener productos más vendidos (admin)
+- `GET /api/analytics/ingresos` - Obtener ingresos totales por período (admin)
+
 ## Dashboard de Analítica
 - Total de ventas por día/semana/mes
 - Productos más vendidos
