@@ -5,7 +5,8 @@ import typer
 from loguru import logger
 from tqdm import tqdm
 
-from src.config import MLFLOW_EXPERIMENT_NAME, MLFLOW_URI, MODELS_DIR, PROCESSED_DATA_DIR
+from src.config import (MLFLOW_EXPERIMENT_NAME, MLFLOW_URI, MODELS_DIR,
+                        PROCESSED_DATA_DIR)
 from src.utils import save_run_id
 
 app = typer.Typer()
