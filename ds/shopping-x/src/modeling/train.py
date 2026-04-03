@@ -1,29 +1,33 @@
 from pathlib import Path
 
 from loguru import logger
+import mlflow
 from tqdm import tqdm
 import typer
 
 from src.config import MODELS_DIR, PROCESSED_DATA_DIR
+from src.config import MLFLOW_URI, MLFLOW_EXPERIMENT_NAME
+from src.utils import save_run_id
 
 app = typer.Typer()
 
 
 @app.command()
 def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
     features_path: Path = PROCESSED_DATA_DIR / "features.csv",
     labels_path: Path = PROCESSED_DATA_DIR / "labels.csv",
     model_path: Path = MODELS_DIR / "model.pkl",
-    # -----------------------------------------
+    mlflow_uri: str = MLFLOW_URI,
+    mlflow_experiment_name: str = MLFLOW_EXPERIMENT_NAME,
 ):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Training some model...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Modeling training complete.")
-    # -----------------------------------------
+
+    
+    mlflow.set_tracking_uri(mlflow_uri)
+    mlflow.set_experiment(mlflow_experiment_name)
+    mlflow.autolog(silent=True)  # Automatically log parameters, metrics, and artifacts
+    with mlflow.start_run() as run:
+        save_run_id(run.info.run_id)  # Save the run ID for later use in prediction
+        mlflow.log_param("example_param", "example_value")  # Example of logging a parameter
 
 
 if __name__ == "__main__":
