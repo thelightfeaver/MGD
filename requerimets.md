@@ -78,7 +78,7 @@
 
 | Tabla | Campos |
 |-------|--------|
-| **usuario** | id, correo, clave, es_admin (default: false) |
+| **usuario** | id, nombre, correo, clave, es_admin (default: false) |
 | **marca** | id, nombre, fecha_creado, eliminido|
 | **categoria** | id, nombre,fecha_creado, eliminado |
 | **size** | id, nombre, fecha_creado, eliminado |
