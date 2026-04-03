@@ -23,10 +23,10 @@ def main(
 
     mlflow.set_tracking_uri(mlflow_uri)
     mlflow.set_experiment(mlflow_experiment_name)
-    mlflow.autolog(silent=True)  # Automatically log parameters, metrics, and artifacts
+    mlflow.autolog(silent=True) 
     with mlflow.start_run() as run:
-        save_run_id(run.info.run_id)  # Save the run ID for later use in prediction
-        mlflow.log_param("example_param", "example_value")  # Example of logging a parameter
+        save_run_id(run.info.run_id)  
+        mlflow.log_param("example_param", "example_value")
 
 
 if __name__ == "__main__":
