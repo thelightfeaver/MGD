@@ -17,7 +17,7 @@
 - FastAPI
 - SQLModel
 - Redis
-- Gunicorn
+- JWT
 
 ### Data Science
 - Streamlit
@@ -91,8 +91,8 @@
 ## API Endpoints
 
 ### Usuario
-- `POST /api/usuarios/register` - Registrar nuevo usuario
-- `POST /api/usuarios/login` - Iniciar sesión
+- `POST /api/register` - Registrar nuevo usuario
+- `POST /api/login` - Iniciar sesión
 
 ### Ropa
 - `GET /api/ropa` - Listar ropa (con filtros por categoría, marca, talla)
