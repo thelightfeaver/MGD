@@ -12,4 +12,5 @@ numpy
 pandas
 streamlit
 mlflow
+isort
 -e .

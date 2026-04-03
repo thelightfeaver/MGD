@@ -41,8 +41,8 @@ test:
 
 
 ## Set up Python interpreter environment
-.PHONY: create_environment
-create_environment:
+.PHONY: env
+env:
 	python -m venv .venv
 
 
