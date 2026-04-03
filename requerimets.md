@@ -207,12 +207,6 @@ flowchart TD
 - `GET /api/analytics/productos-mas-vendidos` - Obtener productos más vendidos (admin)
 - `GET /api/analytics/ingresos` - Obtener ingresos totales por período (admin)
 
-## Dashboard de Analítica
-- Total de ventas por día/semana/mes
-- Productos más vendidos
-- Ingresos totales por período
-- Análisis de tendencias de compra
-
 ## Vistas
 - **Home:** Catálogo de ropa con filtros
 - **Producto:** Detalles de cada prenda
@@ -221,5 +215,16 @@ flowchart TD
 - **Carrito:** Detalles del carrito
 - **Admin:** Gestión de productos, categorías, tallas, marcas y ventas
 - **Analytics:** Visualización de métricas y tendencias de ventas
+
+## Dashboard de Analítica
+- Total de ventas por día/semana/mes
+- Productos más vendidos
+- Ingresos totales por período
+- Análisis de tendencias de compra
+
+## Modelos de Machine Learning
+- **Predicción de ventas:** Predecir ventas futuras basadas en datos históricos
+- **Recomendación de productos:** Sugerir productos a los usuarios basados en su historial de compras y navegación
+
 
 
