@@ -82,20 +82,20 @@
 flowchart TD
     A([Inicio]) --> B[Ingresar a la app]
     B --> C{¿Tiene cuenta?}
-    C -- No --> D[Registrarse\n/api/register]
-    C -- Sí --> E[Iniciar sesión\n/api/login]
+    C -- No --> D[Registrarse]
+    C -- Sí --> E[Iniciar sesión]
     D --> E
-    E --> F[Ver catálogo de ropa\nGET /api/ropa]
+    E --> F[Ver catálogo de ropa]
     F --> G{¿Qué desea hacer?}
     G -- Filtrar --> H[Filtrar por categoría /\nmarca / talla]
     H --> F
-    G -- Agregar al carrito --> I[Agregar item al carrito\nPOST /api/carrito]
-    I --> J[Ver carrito\nGET /api/carrito]
+    G -- Agregar al carrito --> I[Agregar item al carrito]
+    I --> J[Ver carrito]
     J --> K{¿Acción en carrito?}
-    K -- Eliminar item --> L[Eliminar item\nDELETE /api/carrito/id]
+    K -- Eliminar item --> L[Eliminar item]
     L --> J
-    K -- Confirmar compra --> M[Realizar compra\nPOST /api/ventas]
-    M --> N[Ver historial de ventas\nGET /api/ventas]
+    K -- Confirmar compra --> M[Realizar compra]
+    M --> N[Ver historial de ventas]
     N --> O([Fin])
 ```
 
@@ -105,34 +105,34 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Inicio]) --> B[Iniciar sesión como admin\nPOST /api/login]
+    A([Inicio]) --> B[Iniciar sesión como admin]
     B --> C{¿Qué desea gestionar?}
 
     C -- Ropa --> D{Acción sobre ropa}
-    D -- Crear --> D1[POST /api/ropa]
-    D -- Editar --> D2[PUT /api/ropa/id]
-    D -- Eliminar --> D3[DELETE /api/ropa/id]
-    D -- Ver lista --> D4[GET /api/ropa]
+    D -- Crear --> D1[Crear prenda]
+    D -- Editar --> D2[Editar prenda]
+    D -- Eliminar --> D3[Eliminar prenda]
+    D -- Ver lista --> D4[Ver lista de ropa]
 
     C -- Categorías --> E{Acción sobre categorías}
-    E -- Crear --> E1[POST /api/categorias]
-    E -- Editar --> E2[PUT /api/categorias/id]
-    E -- Eliminar --> E3[DELETE /api/categorias/id]
-    E -- Ver lista --> E4[GET /api/categorias]
+    E -- Crear --> E1[Crear categoría]
+    E -- Editar --> E2[Editar categoría]
+    E -- Eliminar --> E3[Eliminar categoría]
+    E -- Ver lista --> E4[Ver lista de categorías]
 
     C -- Tallas --> F{Acción sobre tallas}
-    F -- Crear --> F1[POST /api/sizes]
-    F -- Editar --> F2[PUT /api/sizes/id]
-    F -- Eliminar --> F3[DELETE /api/sizes/id]
-    F -- Ver lista --> F4[GET /api/sizes]
+    F -- Crear --> F1[Crear talla]
+    F -- Editar --> F2[Editar talla]
+    F -- Eliminar --> F3[Eliminar talla]
+    F -- Ver lista --> F4[Ver lista de tallas]
 
     C -- Marcas --> G{Acción sobre marcas}
-    G -- Crear --> G1[POST /api/marcas]
-    G -- Editar --> G2[PUT /api/marcas/id]
-    G -- Eliminar --> G3[DELETE /api/marcas/id]
-    G -- Ver lista --> G4[GET /api/marcas]
+    G -- Crear --> G1[Crear marca]
+    G -- Editar --> G2[Editar marca]
+    G -- Eliminar --> G3[Eliminar marca]
+    G -- Ver lista --> G4[Ver lista de marcas]
 
-    C -- Ventas --> H[Ver todas las ventas\nGET /api/ventas/admin]
+    C -- Ventas --> H[Ver todas las ventas]
     H --> H1{¿Filtrar ventas?}
     H1 -- Por fecha --> H2[Filtrar por fecha_inicio / fecha_fin]
     H1 -- Por producto --> H3[Filtrar por id_ropa]
